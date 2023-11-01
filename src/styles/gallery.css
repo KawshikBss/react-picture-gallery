@@ -1,0 +1,35 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+    background-color: #aacccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-inner {
+    width: 85vw;
+    height: 80vh;
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: 0.15rem 0.15rem 0.15rem #616161;
+}
+
+.top-bar {
+    width: auto;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #aacccc;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-bar-fileinfo {
+    align-items: center;
+}
+
+.topbar-delete-btn {
+    cursor: pointer;
+    color: #ff2222;
+}
