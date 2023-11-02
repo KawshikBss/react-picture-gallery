@@ -49,3 +49,20 @@
     justify-content: center;
     grid-gap: 1rem;
 }
+
+.gallery-add-btn {
+    grid-column: span 1;
+    grid-row: span 1;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.25 rem;
+    cursor: pointer;
+}
+
+.gallery-add-btn:hover {
+    background-color: #c4c4c4;
+}
