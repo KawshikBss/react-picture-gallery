@@ -10,6 +10,8 @@
 .container-inner {
     width: 85vw;
     height: 80vh;
+    display: flex;
+    flex-direction: column;
     background-color: #ffffff;
     border-radius: 0.5rem;
     box-shadow: 0.15rem 0.15rem 0.15rem #616161;
@@ -32,4 +34,18 @@
 .topbar-delete-btn {
     cursor: pointer;
     color: #ff2222;
+}
+
+.gallery-wrapper {
+    flex: 1;
+    overflow-y: scroll;
+}
+
+.gallery-items {
+    padding: 1.25rem 0;
+    display: grid;
+    grid-template-columns: repeat(5, 12rem);
+    grid-auto-rows: 12rem;
+    justify-content: center;
+    grid-gap: 1rem;
 }
