@@ -1,7 +1,14 @@
+import { useState } from "react";
 import Card from "./components/Card/Card";
 import "./styles/gallery.css";
+import { BsCardImage } from "react-icons/bs";
 
 function App() {
+    const [uploadedFiles, setUploadedFiles] = useState([]);
+    const handleFileUpload = (event) => {
+        var file = event?.target?.files?.[0];
+        if (file) setUploadedFiles((prev) => [...prev, file]);
+    };
     return (
         <div className="container">
             <div className="container-inner">
@@ -14,9 +21,20 @@ function App() {
                 </div>
                 <div className="gallery-wrapper">
                     <div className="gallery-items">
-                        {[...Array(20)].map((segment, index) => (
-                            <Card key={index} firstItem={index === 0} />
-                        ))}
+                        {uploadedFiles?.length
+                            ? uploadedFiles.map((segment, index) => (
+                                  <Card key={index} firstItem={index === 0} />
+                              ))
+                            : null}
+                        <label className="gallery-add-btn">
+                            <input
+                                hidden
+                                type="file"
+                                onChange={handleFileUpload}
+                            />
+                            <BsCardImage />
+                            Add Images
+                        </label>
                     </div>
                 </div>
             </div>
