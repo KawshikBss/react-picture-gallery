@@ -5,6 +5,8 @@
     grid-row: span 1;
     border: 1px solid black;
     border-radius: 0.5rem;
+    overflow: hidden;
+    position: relative;
 }
 
 .card-first {
@@ -12,4 +14,34 @@
     height: 23.5rem; */
     grid-column: 1 / 3;
     grid-row: 1 / 3;
+}
+
+.card-select {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1;
+}
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.card-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0;
+}
+
+.selected > .card-overlay {
+    opacity: 0.15;
+}
+
+.card-container:hover > .card-overlay {
+    cursor: pointer;
+    opacity: 0.45;
 }
