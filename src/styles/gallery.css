@@ -48,6 +48,7 @@
     grid-auto-rows: 12rem;
     justify-content: center;
     grid-gap: 1rem;
+    position: relative;
 }
 
 .gallery-add-btn {
