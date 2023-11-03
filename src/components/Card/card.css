@@ -1,17 +1,12 @@
 .card-container {
-    /* width: 10rem;
-    height: 10rem; */
     grid-column: span 1;
     grid-row: span 1;
     border: 1px solid black;
     border-radius: 0.5rem;
     overflow: hidden;
-    position: relative;
 }
 
 .card-first {
-    /* width: 23.5rem;
-    height: 23.5rem; */
     grid-column: 1 / 3;
     grid-row: 1 / 3;
 }
