@@ -37,11 +37,11 @@
     opacity: 0;
 }
 
-.selected > .card-overlay {
+.selected > .card-inner > .card-overlay {
     opacity: 0.15;
 }
 
-.card-container:hover > .card-overlay {
+.card-overlay:hover {
     cursor: pointer;
     opacity: 0.45;
 }
