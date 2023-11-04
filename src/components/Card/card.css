@@ -4,11 +4,23 @@
     border: 1px solid black;
     border-radius: 0.5rem;
     overflow: hidden;
+    position: relative;
+    background-color: #a5a5a5;
 }
 
 .card-first {
     grid-column: 1 / 3;
     grid-row: 1 / 3;
+}
+
+.card-inner {
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.card-hollow {
+    scale: 0.9;
+    border: 1px solid;
 }
 
 .card-select {
