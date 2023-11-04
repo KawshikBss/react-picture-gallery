@@ -5,6 +5,9 @@
     border-radius: 0.5rem;
     overflow: hidden;
     position: relative;
+}
+
+.card-container.card-hollow {
     background-color: #a5a5a5;
 }
 
@@ -14,11 +17,13 @@
 }
 
 .card-inner {
+    width: 100%;
+    height: 100%;
     border-radius: 0.5rem;
     overflow: hidden;
 }
 
-.card-hollow {
+.card-hollow .card-inner {
     scale: 0.9;
     border: 1px solid;
 }
@@ -33,7 +38,7 @@
 .card-img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
 }
 
 .card-overlay {

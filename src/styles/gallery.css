@@ -46,7 +46,7 @@
     display: grid;
     grid-template-columns: repeat(5, 12rem);
     grid-auto-rows: 12rem;
-    justify-content: center;
+    justify-content: space-evenly;
     grid-gap: 1rem;
     position: relative;
 }
@@ -66,4 +66,25 @@
 
 .gallery-add-btn:hover {
     background-color: #c4c4c4;
+}
+
+@media (max-width: 1100px) {
+    .gallery-items {
+        grid-template-columns: repeat(auto-fill, 8rem);
+        grid-auto-rows: 8rem;
+    }
+}
+
+@media (max-width: 760px) {
+    .gallery-items {
+        grid-template-columns: repeat(auto-fill, 7rem);
+        grid-auto-rows: 7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-items {
+        grid-template-columns: repeat(auto-fill, 6rem);
+        grid-auto-rows: 6rem;
+    }
 }
