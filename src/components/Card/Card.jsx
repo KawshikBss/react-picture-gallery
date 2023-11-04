@@ -32,7 +32,6 @@ const Card = ({
         swapItems(currentItem.index, index);
     };
     const onDragOver = (event) => {
-        console.log('over');
         setIsDropping(false);
     };
 
@@ -40,12 +39,12 @@ const Card = ({
         <div
             className={`card-container ${index === 0 ? "card-first" : ""} ${
                 item.selected ? "selected" : ""
-            }`}
+            } ${isDropping ? "card-hollow" : ""}`}
             onDragEnter={onDragEnter}
             onDragLeave={onDragOver}
         >
             <div
-                className={`card-inner ${isDropping ? "card-hollow" : ""}`}
+                className="card-inner"
                 draggable
                 onDragStart={onDragStart}
                 onDrag={onDrag}
