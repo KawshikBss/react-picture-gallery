@@ -110,6 +110,7 @@ function App() {
                                 hidden
                                 type="file"
                                 onChange={handleFileUpload}
+                                accept="image/*"
                             />
                             <BsCardImage />
                             Add Images
