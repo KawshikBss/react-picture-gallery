@@ -4,8 +4,10 @@ import "./styles/gallery.css";
 import { BsCardImage } from "react-icons/bs";
 
 function App() {
-    const [uploadedFiles, setUploadedFiles] = useState([]);
-    const [selectedFilesCount, setSelectedFilesCount] = useState(0);
+    const [uploadedFiles, setUploadedFiles] = useState([]); // state for storing the uploaded files in queue
+    const [selectedFilesCount, setSelectedFilesCount] = useState(0); // state for keeping track of selected files from queue
+
+    // function to handle file uploading
     const handleFileUpload = (event) => {
         var file = event?.target?.files?.[0];
         if (file)
@@ -14,10 +16,12 @@ function App() {
                 { file: file, selected: false },
             ]);
     };
+    // function to extract the number of selected files from queue
     const getSelectedFilesCount = () => {
         if (!uploadedFiles?.length) return 0;
         return uploadedFiles.filter((item) => item.selected).length;
     };
+    // function to handle selecting the file
     const handleFileSelect = (file) => {
         setUploadedFiles((prev) =>
             prev.map((item) =>
@@ -27,6 +31,7 @@ function App() {
             )
         );
     };
+    // function to handle selecting all files
     const handleSelectAll = (event) => {
         if (!event.target.checked) return;
         setUploadedFiles((prev) =>
@@ -35,15 +40,27 @@ function App() {
             })
         );
     };
+    // function to handle deleting all selected files
     const handleFileDelete = () => {
         setUploadedFiles((prev) =>
             prev.filter((item) => item.selected !== true)
         );
     };
+    const swapFiles = (targetFileIndex, destinationFileIndex) => {
+        if (targetFileIndex === destinationFileIndex) return;
+        setUploadedFiles((prev) => {
+            var tmp = prev[targetFileIndex];
+            prev[targetFileIndex] = prev[destinationFileIndex];
+            prev[destinationFileIndex] = tmp;
+            return prev;
+        });
+    };
+
     useEffect(() => {
         setSelectedFilesCount(getSelectedFilesCount());
     }, [uploadedFiles]);
-    console.table(uploadedFiles);
+    const [currentItem, setCurrentItem] = useState(null);
+
     return (
         <div className="container">
             <div className="container-inner">
@@ -79,9 +96,12 @@ function App() {
                             ? uploadedFiles.map((item, index) => (
                                   <Card
                                       key={index}
-                                      firstItem={index === 0}
+                                      index={index}
                                       item={item}
                                       handleFileSelect={handleFileSelect}
+                                      currentItem={currentItem}
+                                      setCurrentItem={setCurrentItem}
+                                      swapItems={swapFiles}
                                   />
                               ))
                             : null}
