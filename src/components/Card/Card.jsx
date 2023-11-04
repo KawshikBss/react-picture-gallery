@@ -1,44 +1,56 @@
 import React, { useState } from "react";
 import "./card.css";
 
-const Card = ({ firstItem, item, handleFileSelect }) => {
+const Card = ({
+    index,
+    item,
+    handleFileSelect,
+    currentItem,
+    setCurrentItem,
+    swapItems,
+}) => {
     const [isDragging, setIsDragging] = useState(false);
-    const [position, setPosition] = useState({ xPos: 0, yPos: 0 });
+    const [isDropping, setIsDropping] = useState(false);
 
     const onDragStart = (event) => {
-        // event.preventDefault();
-        console.log("start");
+        if (currentItem && isDragging) return;
+        setCurrentItem({ ...item, index });
         setIsDragging(true);
     };
     const onDrag = (event) => {
-        console.log("doing");
-        // event.preventDefault();
-        console.log(event);
-        setPosition({ xPos: event.clientX, yPos: event.clientY });
+        if (!currentItem && !isDragging) return;
     };
     const onDragEnd = (event) => {
-        console.log("end");
-        // event.preventDefault();
+        if (!currentItem && !isDragging) return;
         setIsDragging(false);
-        setPosition({ xPos: 0, yPos: 0 });
+        setCurrentItem(null);
     };
+
+    const onDragEnter = (event) => {
+        setIsDropping(true);
+        if (!currentItem || isDragging || currentItem.index === index) return;
+        swapItems(currentItem.index, index);
+    };
+    const onDragOver = (event) => {
+        console.log('over');
+        setIsDropping(false);
+    };
+
     return (
         <div
-            className={`card-container ${firstItem ? "card-first" : ""} ${
+            className={`card-container ${index === 0 ? "card-first" : ""} ${
                 item.selected ? "selected" : ""
             }`}
+            onDragEnter={onDragEnter}
+            onDragLeave={onDragOver}
         >
             <div
+                className={`card-inner ${isDropping ? "card-hollow" : ""}`}
                 draggable
                 onDragStart={onDragStart}
                 onDrag={onDrag}
                 onDragEnd={onDragEnd}
-                className="card-inner"
-                style={{
-                    position: isDragging ? "absolute" : "relative",
-                    top: position.yPos,
-                    left: position.xPos,
-                }}
+                style={{ opacity: isDragging ? 0 : 1 }}
             >
                 <input
                     type="checkbox"
