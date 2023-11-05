@@ -16,6 +16,8 @@ const Card = ({
         if (currentItem && isDragging) return;
         setCurrentItem({ ...item, index });
         setIsDragging(true);
+        var dragImage = new Image();
+        event.dataTransfer.setDragImage(dragImage, 0, 0);
     };
     const onDrag = (event) => {
         if (!currentItem && !isDragging) return;
