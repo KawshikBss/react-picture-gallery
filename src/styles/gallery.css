@@ -68,14 +68,38 @@
     background-color: #c4c4c4;
 }
 
-@media (max-width: 1100px) {
+
+
+.gallery-wrapper::-webkit-scrollbar {
+    padding: 0.25rem;
+    border-left: 1px solid #616161;
+  }
+  
+  .gallery-wrapper::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .gallery-wrapper::-webkit-scrollbar-thumb {
+    width: 1.125rem;
+    background: #aacccc;
+    opacity: 0;
+  }
+
+@media (max-width: 1240px) {
+    .gallery-items {
+        grid-template-columns: repeat(auto-fill, 9rem);
+        grid-auto-rows: 9rem;
+    }
+}
+
+@media (max-width: 1020px) {
     .gallery-items {
         grid-template-columns: repeat(auto-fill, 8rem);
         grid-auto-rows: 8rem;
     }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 860px) {
     .gallery-items {
         grid-template-columns: repeat(auto-fill, 7rem);
         grid-auto-rows: 7rem;
