@@ -27,11 +27,19 @@ const Card = ({
     };
 
     const onDragEnter = (event) => {
+        if (!currentItem || isDragging || currentItem.index === index) return;
         setIsDropping(true);
+    };
+    const onDrop = (event) => {
         if (!currentItem || isDragging || currentItem.index === index) return;
         swapItems(currentItem.index, index);
+        setIsDropping(false);
     };
     const onDragOver = (event) => {
+        event.preventDefault();
+    };
+    const onDragLeave = (event) => {
+        if (!currentItem || isDragging || currentItem.index === index) return;
         setIsDropping(false);
     };
 
@@ -41,7 +49,9 @@ const Card = ({
                 item.selected ? "selected" : ""
             } ${isDropping ? "card-hollow" : ""}`}
             onDragEnter={onDragEnter}
-            onDragLeave={onDragOver}
+            onDrop={onDrop}
+            onDragOver={onDragOver}
+            onDragLeave={onDragLeave}
         >
             <div
                 className="card-inner"
