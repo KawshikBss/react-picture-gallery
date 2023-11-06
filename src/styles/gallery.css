@@ -68,22 +68,19 @@
     background-color: #c4c4c4;
 }
 
-
-
 .gallery-wrapper::-webkit-scrollbar {
-    padding: 0.25rem;
-    border-left: 1px solid #616161;
-  }
-  
-  .gallery-wrapper::-webkit-scrollbar-track {
+    width: 0.5rem;
+    padding: 0 0.25rem;
+}
+
+.gallery-wrapper::-webkit-scrollbar-track {
     background: transparent;
-  }
-  
-  .gallery-wrapper::-webkit-scrollbar-thumb {
-    width: 1.125rem;
+}
+
+.gallery-wrapper::-webkit-scrollbar-thumb {
     background: #aacccc;
-    opacity: 0;
-  }
+    border-radius: 0.5rem;
+}
 
 @media (max-width: 1240px) {
     .gallery-items {
