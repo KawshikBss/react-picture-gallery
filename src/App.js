@@ -9,8 +9,9 @@ function App() {
 
     // function to handle file uploading
     const handleFileUpload = (event) => {
-        var file = event?.target?.files?.[0];
+        var file = event?.target?.files?.[0]; // extracts the first file
         if (file)
+            // if file is not null then is added to uploaded files and set to be not-selected
             setUploadedFiles((prev) => [
                 ...prev,
                 { file: file, selected: false },
@@ -33,7 +34,16 @@ function App() {
     };
     // function to handle selecting all files
     const handleSelectAll = (event) => {
-        if (!event.target.checked) return;
+        if (!event.target.checked) {
+            // if checkbox is changed to un-checked then all files are set to be not-selected
+            setUploadedFiles((prev) =>
+                prev.map((item) => {
+                    return { ...item, selected: false };
+                })
+            );
+            return;
+        }
+        // if checkbox is changed to checked then all files are set to be selected
         setUploadedFiles((prev) =>
             prev.map((item) => {
                 return { ...item, selected: true };
@@ -46,20 +56,22 @@ function App() {
             prev.filter((item) => item.selected !== true)
         );
     };
+    // function to swap the files for re-ordering
     const swapFiles = (targetFileIndex, destinationFileIndex) => {
-        if (targetFileIndex === destinationFileIndex) return;
+        if (targetFileIndex === destinationFileIndex) return; // if the target and destination files are same then don't swap and return
         setUploadedFiles((prev) => {
-            var tmp = prev[targetFileIndex];
-            prev[targetFileIndex] = prev[destinationFileIndex];
-            prev[destinationFileIndex] = tmp;
+            var tmp = prev[targetFileIndex]; // define a temp var to store file in target index
+            prev[targetFileIndex] = prev[destinationFileIndex]; // set file in target index to file in destination index
+            prev[destinationFileIndex] = tmp; // set file in destination index to temp file
             return prev;
         });
     };
 
     useEffect(() => {
-        setSelectedFilesCount(getSelectedFilesCount());
+        setSelectedFilesCount(getSelectedFilesCount()); // update the count of selected files when the uploaded files state changes
     }, [uploadedFiles]);
-    const [currentItem, setCurrentItem] = useState(null);
+
+    const [currentItem, setCurrentItem] = useState(null); // state to track current item
 
     return (
         <div className="container">

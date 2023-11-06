@@ -9,35 +9,45 @@ const Card = ({
     setCurrentItem,
     swapItems,
 }) => {
-    const [isDragging, setIsDragging] = useState(false);
-    const [isDropping, setIsDropping] = useState(false);
+    const [isDragging, setIsDragging] = useState(false); // state to determine if a card-inner component is being dragged
+    const [isDropping, setIsDropping] = useState(false); // state to determine if a card-inner component is being dropped
 
+    // event handler for when a draggable element has started being dragged
     const onDragStart = (event) => {
-        if (currentItem && isDragging) return;
+        if (currentItem && isDragging) return; // if there is a current item and this item is being dragged then return
         setCurrentItem({ ...item, index });
         setIsDragging(true);
     };
-    const onDrag = (event) => {
-        if (!currentItem && !isDragging) return;
-    };
+
+    // event handler for when a draggable element has ended being dragged
     const onDragEnd = (event) => {
+        // if there is a current item and this item is not being dragged then return
         if (!currentItem && !isDragging) return;
         setIsDragging(false);
         setCurrentItem(null);
     };
 
+    // event handler for when a draggable element is entering a dragzone
     const onDragEnter = (event) => {
+        // if no current item or this item is being dragged or current item is this item then return
         if (!currentItem || isDragging || currentItem.index === index) return;
         setIsDropping(true);
     };
+
+    // event handler for when a draggable element is being dropped
     const onDrop = (event) => {
+        // if no current item or this item is being dragged or current item is this item then return
         if (!currentItem || isDragging || currentItem.index === index) return;
-        swapItems(currentItem.index, index);
+        swapItems(currentItem.index, index); // swap the items
         setIsDropping(false);
     };
+
+    // event handler for when a drag operation ends
     const onDragOver = (event) => {
         event.preventDefault();
     };
+
+    // event handler for when a draggable element leaves a dragzone
     const onDragLeave = (event) => {
         if (!currentItem || isDragging || currentItem.index === index) return;
         setIsDropping(false);
@@ -57,7 +67,6 @@ const Card = ({
                 className="card-inner"
                 draggable
                 onDragStart={onDragStart}
-                onDrag={onDrag}
                 onDragEnd={onDragEnd}
                 style={{ opacity: isDragging ? 0 : 1 }}
             >
